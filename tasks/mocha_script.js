@@ -16,9 +16,6 @@ module.exports = function(grunt) {
   // creation: http://gruntjs.com/creating-tasks
 
   grunt.registerMultiTask('mocha_script', 'Compiles Mocha-Script sources to Javascript', function() {
-    console.log('wtf');
-    console.log(this.files);
-    console.log(this);
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
     });
