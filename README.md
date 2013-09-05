@@ -21,6 +21,9 @@ grunt.loadNpmTasks('grunt-mocha-script');
 
 Example Gruntfile:
 
+
+Compile all .mocha files down src into `compiled.js`
+
 ```javascript
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-script');
@@ -30,7 +33,7 @@ module.exports = function(grunt) {
       compile: {
         options: {},
         files: {
-          "compiled.js": ["source.mocha"]
+          "compiled.js": ["src/{,*/}*.mocha"]
         }
       }
     }
@@ -39,5 +42,40 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'mocha_script'
   ]);
+};
+```
+
+Compile all .mocha files in src and place them in a parallel layout in dist.
+Also, watch for changes.
+
+```javascript
+module.exports = function(grunt) {
+	grunt.loadNpmTasks('grunt-mocha-script');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+
+	grunt.initConfig({
+		mocha_script: {
+			compile: {
+				options: {},
+				files: [{
+                    expand: true,
+                    cwd: 'src',
+                    src: '{,*/}*.mocha',
+                    dest: 'dist',
+                    ext: '.js'
+                }]
+			}
+		},
+
+		watch: {
+			scripts: {
+				files: ["src/{,*/}*.mocha"],
+				tasks: ["compile"]
+			}
+		}
+	});
+
+	grunt.registerTask('compile', ['mocha_script']);
+	grunt.registerTask('default', ['compile', 'watch']);
 };
 ```
