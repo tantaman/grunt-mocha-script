@@ -28,7 +28,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "mocha-script": "git://github.com/tantaman/mocha-script.git#production"
+    "mocha-script": "git://github.com/tantaman/mocha-script.git#release"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.0",
